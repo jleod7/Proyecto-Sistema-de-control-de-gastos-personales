@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Gastos Personales",
+    "slug": "gastos-personales-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Esta app necesita tu ubicación para registrar dónde realizaste el gasto."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Esta app necesita acceso a tu galería para adjuntar fotos de tus gastos.",
+          "cameraPermission": "Esta app necesita acceso a la cámara para tomar fotos de tus comprobantes."
+        }
+      ]
+    ]
+  }
+}
