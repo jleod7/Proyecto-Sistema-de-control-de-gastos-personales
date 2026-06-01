@@ -14,15 +14,10 @@ import { Feriado } from "../../types/feriado";
 import { gastoService } from "../../services/gastoService";
 import { logout } from "../../services/authService";
 import { getFeriadosEcuador } from "../../services/feriadoService";
-import { useAuth } from "../../hooks/useAuth";
 import { useFocusEffect } from "@react-navigation/native";
+import { MESES, esDelMesActual } from "../../utils/dateUtils";
 
 type Props = AppScreenProps<"List">;
-
-const MESES = [
-  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
-];
 
 // Colores por categoría para el gráfico de barras
 const COLORES_CATEGORIA: Record<string, string> = {
@@ -39,19 +34,7 @@ const COLORES_CATEGORIA: Record<string, string> = {
 const getColorCategoria = (cat: string): string =>
   COLORES_CATEGORIA[cat] ?? COLORS.primary;
 
-// Verifica si una fecha "dd/mm/yyyy" es del mes y año actuales
-const esDelMesActual = (fecha: string): boolean => {
-  const partes = fecha.split("/");
-  if (partes.length !== 3) return false;
-  const hoy = new Date();
-  return (
-    parseInt(partes[1]) === hoy.getMonth() + 1 &&
-    parseInt(partes[2]) === hoy.getFullYear()
-  );
-};
-
 export const ListScreen = ({ navigation }: Props) => {
-  const { user } = useAuth();
   const [gastos, setGastos] = useState<Gasto[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>("");

@@ -98,9 +98,4 @@ export const gastoService = {
     await remove(gastoRef);
   },
 
-  //DELETE ALL
-  async deleteAll(): Promise<void> {
-    const gastosRef = ref(db, getUserPath());
-    await remove(gastosRef);
-  },
 };

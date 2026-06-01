@@ -10,6 +10,7 @@ import { AppScreenProps } from "../../navigation/typesNavigation";
 import { Gasto } from "../../types/gasto";
 import { gastoService } from "../../services/gastoService";
 import { useFocusEffect } from "@react-navigation/native";
+import { MESES, esDelMesActual } from "../../utils/dateUtils";
 
 type Props = AppScreenProps<"Resumen">;
 
@@ -19,23 +20,7 @@ interface ResumenCategoria {
   cantidad: number;
 }
 
-const MESES = [
-  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
-];
-
-// Verifica si una fecha "dd/mm/yyyy" es del mes y año actuales
-const esDelMesActual = (fecha: string): boolean => {
-  const partes = fecha.split("/");
-  if (partes.length !== 3) return false;
-  const hoy = new Date();
-  return (
-    parseInt(partes[1]) === hoy.getMonth() + 1 &&
-    parseInt(partes[2]) === hoy.getFullYear()
-  );
-};
-
-export const ResumenScreen = ({ navigation }: Props) => {
+export const ResumenScreen = ({}: Props) => {
   const [gastos, setGastos] = useState<Gasto[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
