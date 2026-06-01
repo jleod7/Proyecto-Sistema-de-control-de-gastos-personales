@@ -37,7 +37,6 @@ const FORM_INICIAL: NuevoGasto = {
   observacion: "",
 };
 
-// Retorna la fecha de hoy en formato dd/mm/yyyy
 const getFechaHoy = (): string => {
   const hoy = new Date();
   const dia = String(hoy.getDate()).padStart(2, "0");
@@ -46,15 +45,13 @@ const getFechaHoy = (): string => {
 };
 
 export const FormScreen = ({ route, navigation }: Props) => {
-  // Si llega id por params -> MODO EDICIÓN. Si no -> MODO CREACIÓN.
   const id = route.params?.id;
   const isEditMode: boolean = id !== undefined;
 
-  // En modo creación, la fecha se llena con el día de hoy automáticamente
-  const [form, setForm] = useState<NuevoGasto>(() => ({
+  const [form, setForm] = useState<NuevoGasto>({
     ...FORM_INICIAL,
     fecha: isEditMode ? "" : getFechaHoy(),
-  }));
+  });
 
   const [saving, setSaving] = useState<boolean>(false);
   const [feriados, setFeriados] = useState<Feriado[]>([]);
@@ -165,8 +162,6 @@ export const FormScreen = ({ route, navigation }: Props) => {
       Alert.alert("Monto inválido", "Ingresa un monto mayor a 0");
       return;
     }
-
-    const displayCoordenadas = coordenadas ?? existingCoordenadas;
 
     // Construir gasto final: monto convertido a número y datos de foto/GPS incluidos
     const gastoFinal: NuevoGasto = {
