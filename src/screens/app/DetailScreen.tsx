@@ -49,7 +49,7 @@ export default function DetailScreen({ route, navigation }: Props) {
       `¿Estás seguro que quieres eliminar "${gasto.descripcion}"? Esta acción no se puede deshacer.`,
       [
         { text: "Cancelar", style: "cancel" },
-        { text: "Eliminar", style: "destructive", onPress: handleDelete },
+        { text: "Eliminar", onPress: handleDelete },
       ]
     );
   };
@@ -102,6 +102,7 @@ export default function DetailScreen({ route, navigation }: Props) {
           <Text style={detailStyles.label}>Fecha</Text>
           <Text style={detailStyles.value}>{gasto.fecha}</Text>
         </View>
+        
 
         <View style={detailStyles.field}>
           <Text style={detailStyles.label}>Observación</Text>

@@ -1,11 +1,5 @@
 import React, { useState, useCallback } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, FlatList, Alert, TouchableOpacity } from "react-native";
 import { feriadosStyles } from "../../styles/appStyles";
 import { AppScreenProps } from "../../navigation/typesNavigation";
 import { Feriado } from "../../types/feriado";
@@ -33,7 +27,10 @@ export const FeriadosScreen = ({ navigation }: Props) => {
       const data = await getFeriadosEcuador(anio);
       setFeriados(data);
     } catch (error) {
-      Alert.alert("Error", "No se pudo cargar los feriados. Verifica tu conexión.");
+      Alert.alert(
+        "Error",
+        "No se pudo cargar los feriados. Verifica tu conexión.",
+      );
       console.error(error);
     } finally {
       setLoading(false);
@@ -70,15 +67,14 @@ export const FeriadosScreen = ({ navigation }: Props) => {
         keyExtractor={(item) => item.date}
         contentContainerStyle={feriadosStyles.list}
         ListEmptyComponent={
-          <Text style={feriadosStyles.emptyText}>No hay feriados disponibles</Text>
+          <Text style={feriadosStyles.emptyText}>
+            No hay feriados disponibles
+          </Text>
         }
         renderItem={({ item }) => (
           <View style={feriadosStyles.card}>
             <View style={feriadosStyles.cardHeader}>
               <Text style={feriadosStyles.cardFecha}>{item.date}</Text>
-              <Text style={feriadosStyles.cardTipo}>
-                {item.global ? "🌎 Nacional" : "📍 Regional"}
-              </Text>
             </View>
             <Text style={feriadosStyles.cardNombre}>{item.localName}</Text>
             <Text style={feriadosStyles.cardSubnombre}>{item.name}</Text>

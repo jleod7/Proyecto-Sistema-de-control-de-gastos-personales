@@ -20,7 +20,7 @@ const getUserPath = (): string => {
   return `${GASTOS_PATH}/${uid}`;
 };
 
-// Convertir snapshot de RTDB a array de Gasto
+// Convertir snapshot de  Realtime Database a un array de Gasto
 const snapshotToArray = (snapshot: DataSnapshot): Gasto[] => {
   const val = snapshot.val() as Record<string, Omit<Gasto, "id">> | null;
   if (!val) return [];
